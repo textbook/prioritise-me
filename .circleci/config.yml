@@ -32,7 +32,7 @@ jobs:
       - save_cache:
           key: prioritise-deps-{{ checksum "bin/package.json" }}
           paths:
-            - $HOME/.npm
+            - /home/circleci/.npm
   test:
     <<: *defaults
     steps:
