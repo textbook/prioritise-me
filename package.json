@@ -10,7 +10,7 @@
     "postinstall": "npm run install:client && npm run install:e2e",
     "ship": "npm run lint && npm test",
     "start:client": "cd ./client && cross-env BROWSER=none npm start",
-    "test:client": "cd ./client && cross-env CI=true cross-env npm test -- --reporters=\"jest-junit\"",
+    "test:client": "cd ./client && npm test -- --reporters=\"jest-junit\" --no-watch",
     "test:e2e": "wait-on http-get://localhost:3000 && cd ./e2e && npm test",
     "pretest": "rimraf ./output/*",
     "test": "npm run test:client && npm run e2e"
