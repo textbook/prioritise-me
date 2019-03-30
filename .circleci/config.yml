@@ -1,0 +1,63 @@
+version: 2
+
+defaults: &defaults
+  working_directory: /home/circleci/base
+  docker:
+    - image: circleci/node:10-browsers
+
+
+jobs:
+  dependencies:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /home/circleci/base
+      - run:
+          name: Summarise Dependencies
+          command: ./summariseDependencies.js > package.json
+          working_directory: bin
+      - persist_to_workspace:
+          root: /home/circleci/base
+          paths:
+            - bin/package.json
+      - restore_cache:
+          keys:
+            - prioritise-deps-{{ checksum "bin/package.json" }}
+            - prioritise-deps-
+      - run:
+          name: Install
+          command: npm install --ignore-scripts
+          working_directory: bin
+      - save_cache:
+          key: prioritise-deps-{{ checksum "./bin/package.json" }}
+          paths:
+            - "$HOME/.npm"
+  test:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /home/circleci/base
+      - restore_cache:
+          keys:
+            - prioritise-deps-{{ checksum "bin/package.json" }}
+            - prioritise-deps-
+      - run:
+          name: Install
+          command: npm install
+      - run:
+          name: Lint
+          command: npm run lint
+      - run:
+          name: Test
+          command: npm test
+
+workflows:
+  version: 2
+  pipeline:
+    jobs:
+      - dependencies
+      - test:
+          requires:
+            - dependencies
