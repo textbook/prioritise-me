@@ -1,6 +1,6 @@
 {
   "name": "@prioritise/me",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Task prioritisation tool",
   "scripts": {
     "e2e": "concurrently -k -s first -n \"app,e2e\" \"npm run start:client\" \"npm run test:e2e\"",
