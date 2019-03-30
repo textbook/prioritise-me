@@ -30,9 +30,9 @@ jobs:
           command: npm install --ignore-scripts
           working_directory: bin
       - save_cache:
-          key: prioritise-deps-{{ checksum "./bin/package.json" }}
+          key: prioritise-deps-{{ checksum "bin/package.json" }}
           paths:
-            - "$HOME/.npm"
+            - $HOME/.npm
   test:
     <<: *defaults
     steps:
@@ -52,6 +52,11 @@ jobs:
       - run:
           name: Test
           command: npm test
+      - store_test_results:
+          path: output
+      - store_artifacts:
+          path: e2e/output
+          destination: /output
 
 workflows:
   version: 2

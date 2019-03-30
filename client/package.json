@@ -7,10 +7,13 @@
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8"
   },
+  "devDependencies": {
+    "jest-junit": "^6.3.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --reporters=\"default\"",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -23,6 +26,9 @@
         "version": "^16.8.6"
       }
     }
+  },
+  "jest-junit": {
+    "outputDirectory": "../output/jest"
   },
   "browserslist": [
     ">0.2%",
