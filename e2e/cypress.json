@@ -1,0 +1,13 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "integrationFolder": "./tests",
+  "pluginsFile": false,
+  "reporter": "mocha-multi-reporters",
+  "reporterOptions": {
+    "configFile": "./reporter-config.json"
+  },
+  "screenshotsFolder": "./output/screenshots",
+  "supportFile": false,
+  "video": false,
+  "videosFolder": "./output/videos"
+}

@@ -1,0 +1,27 @@
+{
+  "name": "@prioritise/e2e",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "cypress": "cypress",
+    "pretest": "rimraf ./output/*",
+    "test": "cypress run"
+  },
+  "private": true,
+  "devDependencies": {
+    "cypress": "^3.2.0",
+    "mocha": "^5.2.0",
+    "mocha-junit-reporter": "^1.18.0",
+    "mocha-multi-reporters": "^1.1.7",
+    "rimraf": "^2.6.3"
+  },
+  "eslintConfig": {
+    "extends": "../package.json",
+    "env": {
+      "cypress/globals": true
+    },
+    "plugins": [
+      "cypress"
+    ]
+  }
+}
